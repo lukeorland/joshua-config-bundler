@@ -5,9 +5,9 @@
 '''
 ./run-bundler.py \
   --force \
-  --config /home/hltcoe/lorland/expts/haitian-creole-sms/runs/5/test/1/joshua.config \
-  --origdir /home/hltcoe/lorland/expts/haitian-creole-sms/runs/5 \
-  --destdir haitian5-bundle \
+  /home/hltcoe/lorland/expts/haitian-creole-sms/runs/5/test/1/joshua.config \
+  /home/hltcoe/lorland/expts/haitian-creole-sms/runs/5 \
+  haitian5-bundle \
   "-top-n 1 \
     -output-format %S \
     -mark-oovs false \
@@ -134,16 +134,16 @@ def handle_args():
     parser = MyParser(description='creates a Joshua configuration bundle from '
                                   'an existing configuration and set of files')
 
-    parser.add_argument('--config', type=file,
-                        help='path to the origin configuration file.\n'
+    parser.add_argument('config', type=file,
+                        help='path to the origin configuration file. '
                         'e.g. /path/to/test/1/joshua.config.final')
-    parser.add_argument('--origdir',
-                        help='origin directory, which is the root directory\n'
-                        'from which origin files specified by relative paths\n'
+    parser.add_argument('origdir',
+                        help='origin directory, which is the root directory '
+                        'from which origin files specified by relative paths '
                         'are copied')
-    parser.add_argument('--destdir',
+    parser.add_argument('destdir',
                         help='destination directory, which should not already '
-                        'exist')
+                        'exist. But if it does, it will be removed if -f is used.')
     parser.add_argument('-f', '--force', action='store_true',
                         help='extant destination directory will be overwritten')
     parser.add_argument('other_joshua_configs', nargs='?',
